@@ -4,7 +4,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import PeopleIcon from '@material-ui/icons/People';
+// import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
 import Link from '@material-ui/core/Link';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
@@ -43,14 +43,14 @@ export const staffListItems = (
     </Link>
 
 
-    <Link color="inherit" href="/staff/profile" underline='none'>
+    {/* <Link color="inherit" href="/staff/profile" underline='none'>
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Profile" />
       </ListItem>
-    </Link>
+    </Link> */}
   </div>
 );
 
@@ -94,14 +94,14 @@ export const adminListItems = (
     </Link>
 
 
-    <Link color="inherit" href="/admin/profile" underline='none'>
+    {/* <Link color="inherit" href="/admin/profile" underline='none'>
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Profile" />
       </ListItem>
-    </Link>
+    </Link> */}
   </div>
 );
 
