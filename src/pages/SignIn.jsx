@@ -136,7 +136,7 @@ function SignIn() {
     } else if (staff_id === "staff" && password === "password") {
       history.push("staff/dashboard");
     } else {
-      history.push("/signup");
+      setError("Username and password do not match");
     }
 
     // const user = {
