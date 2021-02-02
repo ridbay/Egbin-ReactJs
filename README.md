@@ -1,7 +1,7 @@
 This is a Leave Management System Built with ReactJS.
 
 ## Live Link
-Open [https://lackadaisical-narrow-winter.glitch.me/](https://lackadaisical-narrow-winter.glitch.me/) to view it in the browser.
+Open [https://egbin-react-js.vercel.app/](https://egbin-react-js.vercel.app/itch.me/) to view it in the browser.
 
 
 ## Available Scripts
