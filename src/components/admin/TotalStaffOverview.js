@@ -7,9 +7,6 @@ import Title from "./Title";
 import USERS_DATA from "../../util/userData";
 const {staffs} = USERS_DATA;
 const demostaffs = staffs
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 const useStyles = makeStyles({
   depositContext: {

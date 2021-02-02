@@ -1,7 +1,7 @@
 
 import Dashboard from "@material-ui/icons/Dashboard";
 
-import Person from "@material-ui/icons/Person";
+// import Person from "@material-ui/icons/Person";
 // core components/views for Admin layout
 import StaffOverview from "./components/staff/Overview";
 // import StaffProfile from "./components/staff/Profile";

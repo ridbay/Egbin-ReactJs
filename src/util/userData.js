@@ -1,4 +1,4 @@
-import Image from "../img/ridwan.jpg";
+
 
 const USERS_DATA = {
   leaves: [
