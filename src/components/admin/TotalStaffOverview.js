@@ -4,7 +4,9 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Title from "./Title";
-
+import USERS_DATA from "../../util/userData";
+const {staffs} = USERS_DATA;
+const demostaffs = staffs
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -17,12 +19,12 @@ const useStyles = makeStyles({
 
 export default function TotalStaffOverview() {
   const classes = useStyles();
-  const [leaves, setLeaves] = useState([]);
+  const [staffs, setStaffs] = useState(demostaffs);
 
   useEffect(() => {
     async function fetchData() {
       const result = await axios("http://localhost:8081/auth/allUsers");
-      setLeaves(result.data.data);
+      setStaffs(result.data.data);
     }
     fetchData();
   }, []);
@@ -30,7 +32,7 @@ export default function TotalStaffOverview() {
     <React.Fragment>
       <Title>Total Staff Members</Title>
       <Typography component="p" variant="h4">
-        {leaves.length}
+        {staffs.length}
       </Typography>
       <Typography
         color="textSecondary"
@@ -42,7 +44,7 @@ export default function TotalStaffOverview() {
       ></Typography>
 
       <div>
-        <Link color="primary" to="/admin/leaves" onClick={preventDefault}>
+        <Link color="primary" href="/admin/leaves">
           View All Staff Members
         </Link>
       </div>

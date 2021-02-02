@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
-// import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../constants/apiConstants';
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -80,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   title: {
-    marginTop: "100px",
+    marginTop: "40px",
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "30px",
@@ -104,160 +103,179 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SignIn() {
-    const history = useHistory()
-    const classes = useStyles();
-  
-    const [state, setState] = useState({
-      email: "",
-      password: "",
+  const history = useHistory();
+  const classes = useStyles();
+
+  const [state, setState] = useState({
+    staff_id: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const handleChange = (name) => (event) => {
+    setState({
+      ...state,
+      [name]: event.target.value,
     });
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null);
-    const handleChange = (name) => (event) => {
-      setState({
-        ...state,
-        [name]: event.target.value,
-      });
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      setLoading(true)
-      const { email, password } = state;
-      if (!email) {
-        return setError("*Email is required");
-      }
-  
-      if (!password) {
-        return setError("*Password is required");
-      }
-  
-      const user = {
-        email,
-        password,
-      };
-      axios
-        .post("http://localhost:8081/auth/signin", user)
-        .then((response) => {
-          console.log("Response from server", response.data);
-          setLoading(false)
-          if (response.status === 200 || response.status === 201) {
-            localStorage.setItem("user",JSON.stringify(response.data.data));
-            localStorage.setItem("token",JSON.stringify(response.data.token));
-            history.push('staff/dashboard')
-          } 
-          else if(response.data.code === 204){
-            setError("Username and password do not match");
-        }else if(response.data.code === 404){
-          setError("Email does not exist");
-      }else {
-            setError("Some errors ocurred while registering your account");
-          }
-        })
-        .catch((err) => {
-          // console.log(err.message);
-          setError(err.message);
-          setLoading(false)
-        });
-    };
-  
-    // const handleAccountTypeChange = (event) => {
-    //   setAccountType(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setLoading(true);
+    const { staff_id, password } = state;
+
+    if (!staff_id) {
+      return setError("*Staff ID is required");
+    }
+
+    if (!password) {
+      return setError("*Password is required");
+    }
+    if (staff_id === "admin" && password === "password") {
+      history.push("admin/dashboard");
+    } else if (staff_id === "staff" && password === "password") {
+      history.push("staff/dashboard");
+    } else {
+      history.push("/signup");
+    }
+
+    // const user = {
+    //   staff_id,
+    //   password,
     // };
-  
-    return (
-      <div>
-        <NavigationHeader />
-        <div className={classes.root}>
-          <CssBaseline />
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={4} className={classes.margin}>
-              {/* <AccountCircleIcon className={classes.icon} /> */}
+    // axios
+    //   .post("http://localhost:8081/auth/signin", user)
+    //   .then((response) => {
+    //     console.log("Response from server", response.data);
+    //     setLoading(false)
+    //     if (response.status === 200 || response.status === 201) {
+    //       localStorage.setItem("user",JSON.stringify(response.data.data));
+    //       localStorage.setItem("token",JSON.stringify(response.data.token));
+    //       history.push('staff/dashboard')
+    //     }
+    //     else if(response.data.code === 204){
+    //       setError("Username and password do not match");
+    //   }else if(response.data.code === 404){
+    //     setError("Email does not exist");
+    // }else {
+    //       setError("Some errors ocurred while registering your account");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err.message);
+    //     setError(err.message);
+    //     setLoading(false)
+    //   });
+  };
+
+  // const handleAccountTypeChange = (event) => {
+  //   setAccountType(event.target.value);
+  // };
+
+  return (
+    <div>
+      <NavigationHeader />
+      <div className={classes.root}>
+        <CssBaseline />
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={4} className={classes.margin}>
+            {/* <AccountCircleIcon className={classes.icon} /> */}
+          </Grid>
+        </Grid>
+
+        <div className={classes.paper}>
+          <Grid container>
+            <Grid item lg={6}>
+              <Typography component="p" variant="inherit">
+                Admin Log-In <br />
+                Staff ID: admin, <br />
+                Password: password
+              </Typography>
+            </Grid>
+            <Grid item lg={6}>
+              <Typography component="p" variant="inherit">
+                Staff Log-In <br />
+                Staff ID: staff, <br />
+                Password: password
+              </Typography>
             </Grid>
           </Grid>
-  
-          <div className={classes.paper}>
-            <Typography component="h1" variant="h5" className={classes.title}>
-              Sign In
+          <Typography component="h1" variant="h5" className={classes.title}>
+            Sign In
+          </Typography>
+          <Typography component="h1" variant="h5" className={classes.subtitle}>
+            Log into your account
+          </Typography>
+          {error ? (
+            <Typography component="h1" variant="h5" className={classes.error}>
+              {error}
             </Typography>
-            <Typography component="h1" variant="h5" className={classes.subtitle}>
-              Log into your account
-            </Typography>
-            {error ? (
-              <Typography
-                component="h1"
-                variant="h5"
-                className={classes.error}
-              >
-                {error}
-              </Typography>
-            ) : null}
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    // variant="outlined"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
-                    value={state.email}
-                    onChange={handleChange("email")}
-                    // helperText={error.email}
-                    // error={error.email ? true:false}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    // variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    value={state.password}
-                    onChange={handleChange("password")}
-                    // helperText={error.password}
-                    // error={error.password ? true:false}
-                  />
-                </Grid>
+          ) : null}
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  // variant="outlined"
+                  required
+                  fullWidth
+                  id="staff_id"
+                  label="Staff ID"
+                  name="staff_id"
+                  autoComplete="staff_id"
+                  value={state.staff_id}
+                  onChange={handleChange("staff_id")}
+                />
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                disabled={loading}
-              >
-                LOGIN
-                {loading && <CircularProgress />}
-              </Button>
-            </form>
-            <Grid
-              container
-              direction="row"
-              justify="flex-end"
-              alignItems="center"
-            >
-              <Grid item xs={8}>
-                  <Typography className={classes.register}>You do not have an account?</Typography>
-                
-              </Grid>
-              <Grid item xs={4}>
-                <Link href="/signup" variant="body2">
-                  <Typography className={classes.register}>SIGN UP</Typography>
-                </Link>
+              <Grid item xs={12}>
+                <TextField
+                  // variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={state.password}
+                  onChange={handleChange("password")}
+                  // helperText={error.password}
+                  // error={error.password ? true:false}
+                />
               </Grid>
             </Grid>
-          </div>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              disabled={loading}
+            >
+              LOGIN
+              {loading && <CircularProgress />}
+            </Button>
+          </form>
+          <Grid
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+          >
+            <Grid item xs={8}>
+              <Typography className={classes.register}>
+                You do not have an account?
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Link href="/signup" variant="body2">
+                <Typography className={classes.register}>SIGN UP</Typography>
+              </Link>
+            </Grid>
+          </Grid>
         </div>
       </div>
-    );
-  };
-  
+    </div>
+  );
+}
+
 export default SignIn;

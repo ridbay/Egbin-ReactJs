@@ -4,7 +4,9 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Title from "./Title";
-
+import USERS_DATA from "../../util/userData";
+const {leaves} = USERS_DATA;
+const demoleaves = leaves;
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -17,7 +19,7 @@ const useStyles = makeStyles({
 
 export default function TotalLeaveOverview() {
   const classes = useStyles();
-  const [leaves, setLeaves] = useState([]);
+  const [leaves, setLeaves] = useState(demoleaves);
 
   useEffect(() => {
     async function fetchData() {
@@ -37,7 +39,7 @@ export default function TotalLeaveOverview() {
     <React.Fragment>
       <Title>Total Leave Requests</Title>
       <Typography component="p" variant="h4">
-        {leaves.length}
+        {leaves.length - 3}
       </Typography>
       <Typography
         color="textSecondary"
@@ -45,11 +47,9 @@ export default function TotalLeaveOverview() {
       ></Typography>
       <Typography
         color="textSecondary"
-        className={classes.depositContext}
-      ></Typography>
-
+        className={classes.depositContext}></Typography>
       <div>
-        <Link color="primary" to="/admin/leaves" onClick={preventDefault}>
+        <Link color="primary" href="/staff/leaves">
           View Leave requests
         </Link>
       </div>
