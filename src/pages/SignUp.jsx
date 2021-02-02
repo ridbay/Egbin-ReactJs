@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+
+// import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
-// import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/styles";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+
 import BackgroundImage from "../img/thermal-power-plant.jpeg";
 import NavigationHeader from "../components/NavBar";
 
@@ -99,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Register() {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -150,13 +149,13 @@ function Register() {
 
     if (state.password === state.confirmPassword) {
       setLoading(true);
-      const newUser = {
-        firstName,
-        lastName,
-        email,
-        password,
-        type,
-      };
+      // const newUser = {
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   password,
+      //   type,
+      // };
       // axios
       //   .post(API_BASE_URL + "/signup", newUser)
       //   .then((response) => {

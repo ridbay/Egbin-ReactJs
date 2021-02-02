@@ -4,12 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Title from './Title';
+// import Title from './Title';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -52,7 +50,7 @@ const AdminNavbar = (props) => {
   const classes = useStyles();
   const { handleDrawerOpen, open, handleProfileMenuOpen } = props;
 
-  const pathName = window.location.pathname.split("/")[2];
+  // const pathName = window.location.pathname.split("/")[2];
 
   return (
     <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
