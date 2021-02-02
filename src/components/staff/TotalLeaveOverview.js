@@ -7,7 +7,9 @@ import Title from "./Title";
 import USERS_DATA from "../../util/userData";
 const {leaves} = USERS_DATA;
 const demoleaves = leaves;
-
+function preventDefault(event) {
+  event.preventDefault();
+}
 
 const useStyles = makeStyles({
   depositContext: {

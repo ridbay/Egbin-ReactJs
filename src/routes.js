@@ -4,13 +4,12 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 // core components/views for Admin layout
 import StaffOverview from "./components/staff/Overview";
-import StaffProfile from "./components/staff/Profile";
+// import StaffProfile from "./components/staff/Profile";
 import StaffLeaveView from "./components/staff/LeavesView";
 import AdminOverview from "./components/admin/Overview";
 import StaffsView from "./components/admin/StaffsView";
-import LeavesView from "./components/admin/LeavesView"
-import AdminProfile from "./components/admin/Profile"
-
+import LeavesView from "./components/admin/LeavesView";
+// import AdminProfile from "./components/admin/Profile";
 
 const routes = [
   {
@@ -20,13 +19,13 @@ const routes = [
     component: StaffOverview,
     layout: "/staff"
   },
-  {
-    path: "/profile",
-    name: "User Profile",
-    icon: Person,
-    component: StaffProfile,
-    layout: "/staff"
-  },
+  // {
+  //   path: "/profile",
+  //   name: "User Profile",
+  //   icon: Person,
+  //   component: StaffProfile,
+  //   layout: "/staff"
+  // },
   {
     path: "/leave",
     name: "Leave Requests",
@@ -55,13 +54,13 @@ const routes = [
     component: LeavesView,
     layout: "/admin"
   },
-  {
-    path: "/profile",
-    name: "Profiles",
-    icon: Dashboard,
-    component: AdminProfile,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/profile",
+  //   name: "Profiles",
+  //   icon: Dashboard,
+  //   component: AdminProfile,
+  //   layout: "/admin"
+  // },
   
 ];
 

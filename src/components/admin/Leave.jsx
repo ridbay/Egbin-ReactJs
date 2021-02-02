@@ -5,26 +5,20 @@ import ToggleOffOutlinedIcon from "@material-ui/icons/ToggleOffOutlined";
 import ToggleOnOutlinedIcon from "@material-ui/icons/ToggleOnOutlined";
 
 import USERS_DATA from "../../util/userData";
-const [staffs] = USERS_DATA;
-const staffsData = staffs.customers;
+const {leaves} = USERS_DATA;
 const Leave = () => {
   const [state, setState] = useState({
     columns: [
-      { title: "Staff ID", field: "id", type: "numeric" },
-      { title: "Name", field: "name" },
-      { title: "Surname", field: "surname" },
+      { title: "Staff ID", field: "staff_id", type: "numeric" },
+      { title: "Name", field: "firstName" },
+      { title: "Surname", field: "lastName" },
       { title: "Status", field: "status" },
-      { title: "Type", field: "type" },
-      { title: "Requested", field: "requested" },
-      { title: "Approved", field: "approved" },
+      { title: "Requested", field: "date_requested" },
+      { title: "Approved", field: "date_approved" },
       { title: "Before", field: "initial_balance" },
-      // { title: 'Account Number', field: 'accountNumber', type: 'numeric', editable: 'never' },
-      // { title: 'Account Type', field: 'accountType', lookup: { 'Savings': 'Savings', 'Current': 'Current' } },
-      // { title: 'Balance', field: 'balance', type: 'numeric' },
-      //   { title: 'Line Manager', field: 'line_manager'},
       { title: "Leave Balance", field: "final_balance" },
     ],
-    data: staffsData,
+    data: leaves,
   });
 
   const [isActivated, setIsActivated] = useState(false);

@@ -4,24 +4,23 @@ import MaterialTable from "material-table";
 import ToggleOffOutlinedIcon from "@material-ui/icons/ToggleOffOutlined";
 import ToggleOnOutlinedIcon from "@material-ui/icons/ToggleOnOutlined";
 
-// import USERS_DATA  from '../../util/userData';
-// const staffs = USERS_DATA[0];
-// const staffsData = staffs.customers;
+import USERS_DATA from "../../util/userData";
+const {staffs} = USERS_DATA;
+
 
 const Staff = () => {
   // const [users, setUsers] = useState(staffsData)
   const [state, setState] = useState({
     columns: [
-      { title: "Staff ID", field: "staff_id" },
-      { title: "Name", field: "firstName" },
-      { title: "Surname", field: "lastName" },
-      // { title: 'Account Number', field: 'accountNumber', type: 'numeric', editable: 'never' },
-      // { title: 'Account Type', field: 'accountType', lookup: { 'Savings': 'Savings', 'Current': 'Current' } },
-      // { title: 'Balance', field: 'balance', type: 'numeric' },
-      { title: "Line Manager", field: "line_manager" },
-      { title: "Exam", field: "examLeave" },
+      { title: "Staff ID", field: "staff_id", editable: "never" },
+          { title: "Name", field: "firstName" },
+          { title: "Surname", field: "lastName" },
+          { title: "Line Manager", field: "line_manager" },
+          { title: "Exam", field: "examLeave" },
+          { title: "Sick", field: "sickLeave" },
+          { title: "Annual", field: "annualLeave" },
     ],
-    data: [],
+    data: staffs,
   });
 
   const [isActivated, setIsActivated] = useState(false);
